@@ -1,0 +1,23 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: cluster
+  region: us-east-2
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+
+managedNodeGroups:
+- name: cpu-nodes
+  instanceType: c5.xlarge
+  volumeSize: 100
+  desiredCapacity: 5
+  iam:
+    withAddonPolicies:
+      albIngress: true
+
+#secretsEncryption:
+#  keyARN: 
